@@ -16,12 +16,13 @@ ENV SHELL /bin/zsh
 # end
 
 # basic tools
-RUN yes | pacman -S vi vim neovim git curl wget tree python go java-environment-common 
+RUN yes | pacman -S vi vim neovim curl wget tree
 ENV EDITOR=nvim
 ENV VISUAL=nvim
 # end
 
 # Python 3 and pip
+RUN yes | pacman -S python
 ENV PYTHONUNBUFFERED=1
 ENV PATH="/root/.local/bin:$PATH"
 ADD pip.cn.conf /root/.config/pip/pip.conf
@@ -83,7 +84,7 @@ RUN echo 'source /root/.bashrc' >> /root/.zshrc
 # end
 
 # Java
-# RUN yes | pacman -S jre-openjdk-headless jdk-openjdk
+# RUN yes | pacman -S java-environment-common jre-openjdk-headless jdk-openjdk
 # ENV JAVA_HOME=/usr/lib/jvm/default/
 # ENV PATH=$JAVA_HOME/bin:$PATH
 # end
