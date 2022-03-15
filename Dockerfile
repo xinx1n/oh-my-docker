@@ -21,15 +21,6 @@ ENV EDITOR=nvim
 ENV VISUAL=nvim
 # end
 
-# Python 3 and pip
-RUN yes | pacman -S python
-ENV PYTHONUNBUFFERED=1
-ENV PATH="/root/.local/bin:$PATH"
-ADD pip.cn.conf /root/.config/pip/pip.conf
-RUN python -m ensurepip &&\
-	python -m pip install --no-cache --upgrade pip setuptools wheel
-# end
-
 # Ruby
 ADD rvm-stable.tar.gz /tmp/rvm-stable.tar.gz
 ENV PATH="/usr/local/rvm/bin:$PATH"
@@ -54,6 +45,15 @@ RUN go env -w GO111MODULE=on &&\
 RUN yes | pacman -S nodejs npm &&\
     npm config set registry=https://registry.npmmirror.com &&\
 		corepack enable 
+# end
+
+# Python 3 and pip
+RUN yes | pacman -S python
+ENV PYTHONUNBUFFERED=1
+ENV PATH="/root/.local/bin:$PATH"
+ADD pip.cn.conf /root/.config/pip/pip.conf
+RUN python -m ensurepip &&\
+	python -m pip install --no-cache --upgrade pip setuptools wheel
 # end
 
 # others
