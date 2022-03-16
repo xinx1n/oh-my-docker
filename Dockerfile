@@ -21,15 +21,6 @@ ENV EDITOR=nvim
 ENV VISUAL=nvim
 # end
 
-# Ruby
-ADD rvm-stable.tar.gz /tmp/rvm-stable.tar.gz
-ENV PATH="/usr/local/rvm/bin:$PATH"
-RUN mv /tmp/rvm-stable.tar.gz/rvm-rvm-6bfc921 /tmp/rvm && cd /tmp/rvm && ./install --auto-dotfiles &&\
-		echo "ruby_url=https://cache.ruby-china.com/pub/ruby" > /usr/local/rvm/user/db &&\
-		echo 'gem: --no-document --verbose' > "$HOME/.gemrc" &&\
-		rvm install ruby-3
-# end 
-
 # Install Go
 RUN yes | pacman -S go
 ENV GOPATH /root/go
@@ -38,7 +29,7 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 ENV GOROOT /usr/lib/go
 RUN go env -w GO111MODULE=on &&\
     go env -w GOPROXY=https://goproxy.cn,direct &&\
-		go get github.com/silenceper/gowatch
+		go install github.com/silenceper/gowatch@latest
 # end
 
 # Dev env for JS
@@ -55,6 +46,15 @@ ADD pip.cn.conf /root/.config/pip/pip.conf
 RUN python -m ensurepip &&\
 	python -m pip install --no-cache --upgrade pip setuptools wheel
 # end
+
+# Ruby
+ADD rvm-stable.tar.gz /tmp/rvm-stable.tar.gz
+ENV PATH="/usr/local/rvm/bin:$PATH"
+RUN mv /tmp/rvm-stable.tar.gz/rvm-rvm-6bfc921 /tmp/rvm && cd /tmp/rvm && ./install --auto-dotfiles &&\
+		echo "ruby_url=https://cache.ruby-china.com/pub/ruby" > /usr/local/rvm/user/db &&\
+		echo 'gem: --no-document --verbose' > "$HOME/.gemrc" &&\
+		rvm install ruby-3 
+# end 
 
 # others
 RUN yes | pacman -S fzf openssh docker exa the_silver_searcher fd chezmoi rsync &&\
