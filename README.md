@@ -15,7 +15,8 @@
 3. 使用 VSCode 打开 oh-my-dev, 安装 [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) 插件
 4. 创建 my-project/Dockerfile, 并在文件中写入 `FROM xinx1n/oh-my-docker:latest` 即可
 5. 在 VSCode 中运行命令（按下快捷键 ctrl+shift+p）输入 Reopen Folder in Container 后回车
-6. 稍等片刻, 你就可以新建终端, 调用 ruby / go / node  / python 等命令了.
+6. 稍等片刻, 你就可以新建终端, 调用  go / node  / python 等命令了.
+7. 如果想使用 ruby, 运行 `rvm use 3`,启用 ruby 3, 或者其他你想用的版本
 
 ## Build  
 
