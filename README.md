@@ -19,7 +19,7 @@
 
 ## Build  
 
-`docker image build [OPTIONS] PATH | URL | -` 比如 `networkfordockerdev docker image build --pull -t yourname/imagename:tag .`
+`docker image build [OPTIONS] PATH | URL | -` 比如 `docker image build --pull -t yourname/imagename:tag .`
 
 当你想使用的配置与我提供的相差较大, 可以 clone 到本地, 直接修改 Dockerfile 以增删能用, 并 build 自己的镜像, 将 `FROM xinx1n/oh-my-docker:latest` 修改为 `yourname/imagename:tag`, 就可以改为使用你自己的镜像了.
 
