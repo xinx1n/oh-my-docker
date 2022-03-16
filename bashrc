@@ -12,6 +12,7 @@ alias la='ls -alh'
 [ -f ~/.bash_aliases.local ] && { source ~/.bash_aliases.local }
 [ -f ~/.rvm/scripts/rvm ] && { source ~/.rvm/scripts/rvm }
 [ -f ~/.config/z/z.sh ] && { source ~/.config/z/z.sh }
+[ -f /etc/profile.d/rvm.sh ] && { source /etc/profile.d/rvm.sh }
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export TZ='Asia/Shanghai'
 export EDITOR=nvim
